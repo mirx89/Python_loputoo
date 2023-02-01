@@ -20,8 +20,8 @@ class Controller:
         print(names)
 
     def click_tasks(self):
-        names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
-        print(names)
+        tasks = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
+        print(tasks)
 
     def click_shuffled(self):
         pass
