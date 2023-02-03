@@ -16,22 +16,24 @@ class Controller:
 
     def click_names(self):
         self.view.box_names.delete("1.0", "end")
-        names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
-        # print(names)  # test
-        # TODO kas failis midagi olemas
-        self.model.open_file_names(names)
-        if len(self.model.names) > 0:
-            for name in self.model.names:
-                self.view.box_names.insert(INSERT, name + "\n")
+        txt_names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
+        # print(txt_names)  # test
+        if txt_names != "":
+            self.model.open_file_names(txt_names)
+            if len(self.model.names) > 0:
+                for name in self.model.names:
+                    self.view.box_names.insert(INSERT, name + "\n")
+                # print(self.model.names) #  test
 
     def click_tasks(self):
         self.view.box_tasks.delete("1.0", "end")
-        tasks = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
+        txt_tasks = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
         # print(tasks)  # test
-        self.model.open_file_tasks(tasks)
-        if len(self.model.tasks) > 0:
-            for task in self.model.tasks:
-                self.view.box_tasks.insert(INSERT, task + "\n")
+        if txt_tasks != "":
+            self.model.open_file_tasks(txt_tasks)
+            if len(self.model.tasks) > 0:
+                for task in self.model.tasks:
+                    self.view.box_tasks.insert(INSERT, task + "\n")
 
     def click_shuffled(self):
         if len(self.model.names) > len(self.model.tasks):
@@ -46,16 +48,16 @@ class Controller:
                 x += 1
 
     def click_save(self):
-        final = filedialog.asksaveasfilename(
-            filetypes=[("txt file", ".txt")],
-            defaultextension=".txt",
-            initialdir='D:\\my_data\\my_html\\')
-        print(final)
-        if final != "":
-            """ File exists"""
-            with open(final, "a", encoding="utf-8") as f:
-                for save in self.model.final:
-                    f.write(save + "\n")
+        if self.view.box_final != "":
+            final = filedialog.asksaveasfilename(
+                filetypes=[("txt file", ".txt")],
+                defaultextension=".txt",
+                initialdir='D:\\my_data\\my_html\\')
+            print(final)
+            if final != "":
+                """ File exists"""
+                with open(final, "a", encoding="utf-8") as f:
+                    for save in self.model.final:
+                        f.write(save + "\n")
 
-        # TODO kui panen cancle error 2x
         # TODO enne salvestamist kontrollida kas 3. listis on midagi enne kui salvestada saab
