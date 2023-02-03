@@ -1,25 +1,24 @@
 from tkinter import *
 import tkinter.font as tkfont
-
-
+# sisu loeb listi ja siis alles aknasse
 class View(Tk):
 
     def __init__(self, controller, model):
         super().__init__()
         self.controller = controller
         self.model = model
-
         self.default_style = tkfont.Font(family="Verdana", size=10)
 
         # window properties
-        self.geometry("450x600")
+        self.geometry("1900x1000")
         self.title("Python")
         self.center(self)
 
         # Create frame
         self.frame_top, self.frame_bottom = self.create_two_frames()
         self.btn_names, self.btn_tasks, self.btn_shuffle, self.btn_save = self.create_all_buttons()
-        self.lbl_resultr = self.create_all_labels()
+        self.box_names, self.box_tasks, self.box_final = self.create_textboxes()
+
 
     def main(self):
         self.mainloop()
@@ -53,40 +52,37 @@ class View(Tk):
         return frame_top, frame_bottom  # method return two objects
 
     def create_all_buttons(self):
-        btn_names = Button(self.frame_top, text="Names...", font=self.default_style, command=self.controller.click_names)
+        btn_names = Button(self.frame_top, text="Names...", font=self.default_style,
+                           command=self.controller.click_names)
 
-        btn_tasks = Button(self.frame_top, text="Tasks...", font=self.default_style, command=self.controller.click_tasks)
+        btn_tasks = Button(self.frame_top, text="Tasks...", font=self.default_style,
+                           command=self.controller.click_tasks)
 
-        btn_shuffled = Button(self.frame_top, text="Shuffle", font=self.default_style, command=self.controller.click_shuffled)
+        btn_final = Button(self.frame_top, text="Shuffle", font=self.default_style,
+                              command=self.controller.click_shuffled)
 
-        btn_save = Button(self.frame_top, text="Save", font=self.default_style,
+        btn_save = Button(self.frame_top, text="Save...", font=self.default_style,
                           command=self.controller.click_save)
 
         # Place three buttons and frames
         btn_names.grid(row=0, column=0, padx=20, pady=50, sticky=EW)
         btn_tasks.grid(row=0, column=1, padx=20, pady=50, sticky=EW)
-        btn_shuffled.grid(row=0, column=2, padx=20, pady=50, sticky=EW)
+        btn_final.grid(row=0, column=2, padx=20, pady=50, sticky=EW)
         btn_save.grid(row=0, column=3, padx=20, pady=50, sticky=EW)
 
-        return btn_names, btn_tasks, btn_shuffled, btn_save
+        return btn_names, btn_tasks, btn_final, btn_save
 
-    def create_all_labels(self):
 
-        lbl_names = Label(self.frame_bottom, text="Names", anchor="w", font=self.default_style)
-        lbl_tasks = Label(self.frame_bottom, text="Tasks", anchor="center", font=self.default_style)
-        lbl_shuffled = Label(self.frame_bottom, text="Shuffled", anchor="e", font=self.default_style)
+    def create_textboxes(self):
+        box_names = Text(self.frame_bottom, bg='white')
+        box_tasks = Text(self.frame_bottom, bg='white')
+        box_final = Text(self.frame_bottom, bg='white')
 
-        lbl_names.grid(row=1, column=0, padx=30, pady=2)
-        lbl_tasks.grid(row=1, column=1, padx=30, pady=2)
-        lbl_shuffled.grid(row=1, column=2, padx=30, pady=2)
+        # Create scrollbar
 
-        name_image = Frame(self.frame_bottom, bg="white", width=130, height=330)
-        name_image.grid(row=2, column=0, rowspan=4, padx=5, pady=5)
-        tasks_image = Frame(self.frame_bottom, bg="white", width=130, height=330)
-        tasks_image.grid(row=2, column=1, rowspan=4, padx=5, pady=5)
-        shuffled_image = Frame(self.frame_bottom, bg="white", width=130, height=330)
-        shuffled_image.grid(row=2, column=2, rowspan=4, padx=5, pady=5)
+        box_names.pack(side=LEFT, padx=5, pady=5)
+        box_tasks.pack(side=LEFT, padx=5, pady=5)
+        box_final.pack(side=LEFT, padx=5, pady=5)
+        return box_names, box_tasks, box_final
 
-        # Txtbox
 
-        """scrolled tekst kastide asemel"""
