@@ -19,6 +19,7 @@ class Controller:
         txt_names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
         # print(txt_names)  # test
         if txt_names != "":
+            messagebox.showerror("Viga", "Valitud fail on tühi.")
             self.model.open_file_names(txt_names)
             if len(self.model.names) > 0:
                 for name in self.model.names:
@@ -30,6 +31,7 @@ class Controller:
         txt_tasks = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
         # print(tasks)  # test
         if txt_tasks != "":
+            messagebox.showerror("Viga", "Valitud fail on tühi.")
             self.model.open_file_tasks(txt_tasks)
             if len(self.model.tasks) > 0:
                 for task in self.model.tasks:
@@ -48,7 +50,7 @@ class Controller:
                 x += 1
 
     def click_save(self):
-        if self.view.box_final != "":
+        if len(self.model.final) != 0:
             final = filedialog.asksaveasfilename(
                 filetypes=[("txt file", ".txt")],
                 defaultextension=".txt",
