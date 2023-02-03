@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.font as tkfont
-# sisu loeb listi ja siis alles aknasse
+
+
 class View(Tk):
 
     def __init__(self, controller, model):
@@ -18,7 +19,6 @@ class View(Tk):
         self.frame_top, self.frame_bottom = self.create_two_frames()
         self.btn_names, self.btn_tasks, self.btn_shuffle, self.btn_save = self.create_all_buttons()
         self.box_names, self.box_tasks, self.box_final = self.create_textboxes()
-
 
     def main(self):
         self.mainloop()
@@ -59,7 +59,7 @@ class View(Tk):
                            command=self.controller.click_tasks)
 
         btn_final = Button(self.frame_top, text="Shuffle", font=self.default_style,
-                              command=self.controller.click_shuffled)
+                           command=self.controller.click_shuffled)
 
         btn_save = Button(self.frame_top, text="Save...", font=self.default_style,
                           command=self.controller.click_save)
@@ -72,7 +72,6 @@ class View(Tk):
 
         return btn_names, btn_tasks, btn_final, btn_save
 
-
     def create_textboxes(self):
         box_names = Text(self.frame_bottom, bg='white')
         box_tasks = Text(self.frame_bottom, bg='white')
@@ -84,5 +83,3 @@ class View(Tk):
         box_tasks.pack(side=LEFT, padx=5, pady=5)
         box_final.pack(side=LEFT, padx=5, pady=5)
         return box_names, box_tasks, box_final
-
-

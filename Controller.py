@@ -2,6 +2,7 @@ from tkinter import filedialog, INSERT, messagebox
 from Model import Model
 from View import View
 
+
 class Controller:
 
     def __init__(self, db_name=None):
@@ -17,11 +18,11 @@ class Controller:
         self.view.box_names.delete("1.0", "end")
         names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
         # print(names)  # test
+        # TODO kas failis midagi olemas
         self.model.open_file_names(names)
         if len(self.model.names) > 0:
             for name in self.model.names:
                 self.view.box_names.insert(INSERT, name + "\n")
-
 
     def click_tasks(self):
         self.view.box_tasks.delete("1.0", "end")
@@ -41,8 +42,8 @@ class Controller:
             x = 0
             for name in self.model.names:
                 self.view.box_final.insert(INSERT, name + " - " + self.model.tasks[x] + "\n")
+                self.model.final.append(name + " - " + self.model.tasks[x])
                 x += 1
-
 
     def click_save(self):
         final = filedialog.asksaveasfilename(
@@ -50,5 +51,11 @@ class Controller:
             defaultextension=".txt",
             initialdir='D:\\my_data\\my_html\\')
         print(final)
-        self.model.write_file()
+        if final != "":
+            """ File exists"""
+            with open(final, "a", encoding="utf-8") as f:
+                for save in self.model.final:
+                    f.write(save + "\n")
 
+        # TODO kui panen cancle error 2x
+        # TODO enne salvestamist kontrollida kas 3. listis on midagi enne kui salvestada saab

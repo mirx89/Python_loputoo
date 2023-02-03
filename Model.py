@@ -28,12 +28,3 @@ class Model:
 
     def shuffle_task(self):
         random.shuffle(self.tasks)
-
-    def write_file(self):
-        pass
-
-    """
-    3 listi mudelisse:
-    ülesanded
-    lõpptulemus
-    jne"""
