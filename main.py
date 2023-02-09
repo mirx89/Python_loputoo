@@ -2,7 +2,7 @@
 from Controller import Controller
 
 
-class final:
+class Final:
 
     def __init__(self):
         Controller(db_name).main()
@@ -11,4 +11,4 @@ class final:
 if __name__ == "__main__":
     db_name = None
 
-    final()
+    Final()

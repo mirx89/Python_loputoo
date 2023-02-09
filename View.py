@@ -43,8 +43,8 @@ class View(Tk):
         win.deiconify()
 
     def create_two_frames(self):
-        frame_top = Frame(self, bg="#1E90FF", height=50)
-        frame_bottom = Frame(self, bg="#ADFF2F")
+        frame_top = Frame(self, bg="#7AC5CD", height=150)
+        frame_bottom = Frame(self, bg="#F0F8FF")
 
         frame_top.pack(fill="both")
         frame_bottom.pack(expand=True, fill="both")
@@ -73,9 +73,9 @@ class View(Tk):
         return btn_names, btn_tasks, btn_final, btn_save
 
     def create_textboxes(self):
-        box_names = Text(self.frame_bottom, bg='white')
-        box_tasks = Text(self.frame_bottom, bg='white')
-        box_final = Text(self.frame_bottom, bg='white')
+        box_names = Text(self.frame_bottom, bg='white', height=25, width=25)
+        box_tasks = Text(self.frame_bottom, bg='white', height=25, width=50)
+        box_final = Text(self.frame_bottom, bg='white', height=25, width=100)
 
         # Create scrollbar
 

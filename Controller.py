@@ -19,25 +19,28 @@ class Controller:
         txt_names = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
         # print(txt_names)  # test
         if txt_names != "":
-            messagebox.showerror("Viga", "Valitud fail on tühi.")
             self.model.open_file_names(txt_names)
             if len(self.model.names) > 0:
                 for name in self.model.names:
                     self.view.box_names.insert(INSERT, name + "\n")
-                # print(self.model.names) #  test
+                    # print(self.model.names) #  test
+            else:
+                messagebox.showerror("Viga", "Valitud fail on tühi.")
 
     def click_tasks(self):
         self.view.box_tasks.delete("1.0", "end")
         txt_tasks = filedialog.askopenfilename(filetypes=[("txt file", ".txt")])
-        # print(tasks)  # test
+        # print(txt_tasks)  # test
         if txt_tasks != "":
-            messagebox.showerror("Viga", "Valitud fail on tühi.")
             self.model.open_file_tasks(txt_tasks)
             if len(self.model.tasks) > 0:
                 for task in self.model.tasks:
                     self.view.box_tasks.insert(INSERT, task + "\n")
+            else:
+                messagebox.showerror("Viga", "Valitud fail on tühi.")
 
     def click_shuffled(self):
+        self.model.final = []
         if len(self.model.names) > len(self.model.tasks):
             messagebox.showerror("Viga", "Ülesannete arv on liiga väike.")
         else:
@@ -55,11 +58,10 @@ class Controller:
                 filetypes=[("txt file", ".txt")],
                 defaultextension=".txt",
                 initialdir='D:\\my_data\\my_html\\')
-            print(final)
+            # print(final)  # test
             if final != "":
-                """ File exists"""
                 with open(final, "a", encoding="utf-8") as f:
                     for save in self.model.final:
                         f.write(save + "\n")
-
-        # TODO enne salvestamist kontrollida kas 3. listis on midagi enne kui salvestada saab
+        else:
+            messagebox.showerror("Viga", "Nimede ja/või ülesannete lahter on tühi.")
