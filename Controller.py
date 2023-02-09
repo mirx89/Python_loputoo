@@ -43,6 +43,10 @@ class Controller:
         self.model.final = []
         if len(self.model.names) > len(self.model.tasks):
             messagebox.showerror("Viga", "Ülesannete arv on liiga väike.")
+        elif len(self.model.names) == 0:
+            messagebox.showerror("Viga", "Nimede ja/või ülesannete lahter on tühi.")
+        elif len(self.model.tasks) == 0:
+            messagebox.showerror("Viga", "Nimede ja/või ülesannete lahter on tühi.")
         else:
             self.view.box_final.delete("1.0", "end")
             self.model.shuffle_task()
